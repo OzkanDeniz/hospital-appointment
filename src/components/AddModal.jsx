@@ -5,9 +5,12 @@ import Modal from "react-bootstrap/Modal";
 
 function AddModal({handleClose,show,drName}) {
   //   const [show, setShow] = useState(false);
-
   //   const handleClose = () => setShow(false);
   //   const handleShow = () => setShow(true);
+
+  const [name, setname] = useState("")
+  const [date, setdate] = useState("")
+  console.log(name,date)
 
   return (
     <>
@@ -19,12 +22,12 @@ function AddModal({handleClose,show,drName}) {
           <Form>
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Patient Name:</Form.Label>
-              <Form.Control type="text" placeholder="Enter Your Name" />
+              <Form.Control onChange={(e)=>setname(e.target.value)} type="text" placeholder="Enter Your Name" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="date">
               <Form.Label>Day&Time:</Form.Label>
-              <Form.Control type="datetime-local" placeholder="date" />
+              <Form.Control onChange={(e)=>setdate(e.target.value)} type="datetime-local" placeholder="date" />
             </Form.Group>
             <Form.Group
               className="mb-3"

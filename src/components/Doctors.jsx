@@ -10,7 +10,7 @@ const Doctors = () => {
   const handleClose = () => setShow(false);
   const handleShow = (name) => {
     setShow(true);
-    setdrName(name)
+    setdrName(name);
   };
 
   return (
