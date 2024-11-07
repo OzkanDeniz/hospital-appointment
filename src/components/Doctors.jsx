@@ -9,16 +9,21 @@ const Doctors = () => {
         Our Doctors
       </h3>
       <Row>
-        {doctorData.map((doctor) => {
-          const { id, name, dep, img } = doctor;
-          return (
-            <Col key={id}>
-              <img src={img} alt={name} />
-              <h5>{name}</h5>
-              <h6>{dep}</h6>
-            </Col>
-          );
-        })}
+        {doctorData.map(({ id, name, dep, img }) => (
+          <Col key={id}>
+            <img src={img} alt={name} />
+            <h5>{name}</h5>
+            <h6>{dep}</h6>
+          </Col>
+          // const { id, name, dep, img } = doctor;
+          // return (
+          //   <Col key={id}>
+          //     <img src={img} alt={name} />
+          //     <h5>{name}</h5>
+          //     <h6>{dep}</h6>
+          //   </Col>
+          // );
+        ))}
       </Row>
     </Container>
   );
