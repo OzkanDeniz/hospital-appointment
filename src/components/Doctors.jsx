@@ -6,9 +6,12 @@ import { useState } from "react";
 
 const Doctors = () => {
   const [show, setShow] = useState(false);
-
+  const [drName, setdrName] = useState("");
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (name) => {
+    setShow(true);
+    setdrName(name)
+  };
 
   return (
     <Container className="p-2">
@@ -18,7 +21,12 @@ const Doctors = () => {
       <Row>
         {doctorData.map(({ id, name, dep, img }) => (
           <Col xs={6} md={4} lg={3} key={id}>
-            <img src={img} alt={name} className="doctor-img img-thumbnail" onClick={handleShow} />
+            <img
+              src={img}
+              alt={name}
+              className="doctor-img img-thumbnail"
+              onClick={() => handleShow(name)}
+            />
             <h5>{name}</h5>
             <h6>{dep}</h6>
           </Col>
@@ -32,7 +40,7 @@ const Doctors = () => {
           // );
         ))}
       </Row>
-      <AddModal handleClose={handleClose} show={show}/>
+      <AddModal handleClose={handleClose} show={show} drName={drName} />
     </Container>
   );
 };
