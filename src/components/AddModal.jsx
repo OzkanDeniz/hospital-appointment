@@ -4,13 +4,14 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 function AddModal({handleClose,show,drName}) {
+  //   doctors a lifting state up yaptık
   //   const [show, setShow] = useState(false);
   //   const handleClose = () => setShow(false);
   //   const handleShow = () => setShow(true);
 
   const [name, setname] = useState("")
   const [date, setdate] = useState("")
-  console.log(name,date)
+  
 
   return (
     <>
