@@ -16,12 +16,16 @@ function AddModal({ handleClose, show, drName, handleAdd }) {
     e.preventDefault();
     const newAppointment = {
       id: new Date().getTime(),
+      // new Date mevcut tarihi oluşturur get time zamanı milisaniye cinsinden verir böylece unique id alırız
       patient: name,
       day: date,
       consulted: false,
       doctor: drName,
     };
     handleAdd(newAppointment);
+    //handleAdd metoduna newAppoinment parametre olarak gönderdik yani oluşturduğumuz newAppoinment datasını gönderdik
+    handleClose();
+    // Modal submit edilince kapanması için
   };
 
   return (
