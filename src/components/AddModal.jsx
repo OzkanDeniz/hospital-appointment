@@ -3,15 +3,26 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function AddModal({handleClose,show,drName}) {
+function AddModal({ handleClose, show, drName, handleAdd }) {
   //   doctors a lifting state up yaptık
   //   const [show, setShow] = useState(false);
   //   const handleClose = () => setShow(false);
   //   const handleShow = () => setShow(true);
 
-  const [name, setname] = useState("")
-  const [date, setdate] = useState("")
-  
+  const [name, setname] = useState("");
+  const [date, setdate] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newAppointment = {
+      id: new Date().getTime(),
+      patient: name,
+      day: date,
+      consulted: false,
+      doctor: drName,
+    };
+    handleAdd(newAppointment);
+  };
 
   return (
     <>
@@ -20,15 +31,23 @@ function AddModal({handleClose,show,drName}) {
           <Modal.Title>Appoinment for {drName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Patient Name:</Form.Label>
-              <Form.Control onChange={(e)=>setname(e.target.value)} type="text" placeholder="Enter Your Name" />
+              <Form.Control
+                onChange={(e) => setname(e.target.value)}
+                type="text"
+                placeholder="Enter Your Name"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="date">
               <Form.Label>Day&Time:</Form.Label>
-              <Form.Control onChange={(e)=>setdate(e.target.value)} type="datetime-local" placeholder="date" />
+              <Form.Control
+                onChange={(e) => setdate(e.target.value)}
+                type="datetime-local"
+                placeholder="date"
+              />
             </Form.Group>
             <Form.Group
               className="mb-3"
