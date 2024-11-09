@@ -2,7 +2,7 @@ import { Col, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import { TiDelete } from "react-icons/ti";
 
-const AppointmentList = ({ appointments, handleDelete }) => {
+const AppointmentList = ({ appointments, handleDelete,handleDoubleClick }) => {
   return (
     <Container className="p-2">
       <h3 className="display-6 mb-2" style={{ color: "rgb(166, 18, 189)" }}>
@@ -10,7 +10,8 @@ const AppointmentList = ({ appointments, handleDelete }) => {
       </h3>
       {appointments.length === 0 && <img src="./img/appointment.jpg" width="70%" />}
       {appointments.map(({ id, patient, day, consulted, doctor }) => (
-        <div className={consulted ? "appointments consulted" : "appointments"}>
+        <div role="button" className={consulted ? "appointments consulted" : "appointments"}
+        onDoubleClick={()=>handleDoubleClick(id)}>
           {/* jsx olduğundan classnamelerde js yazabiliriz */}
           <Row className="justify-content-between align-items-center">
             <Col md={6}>

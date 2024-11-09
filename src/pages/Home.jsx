@@ -7,18 +7,32 @@ const Home = () => {
   const [appointments, setAppointments] = useState(appointmentData);
   const handleAdd = (newAppointment) => {
     setAppointments([...appointments, newAppointment]);
+    localStorage.setItem("list",JSON.stringify([...appointments, newAppointment]));
   };
+  
 
   const handleDelete = (id) => {
     const filteredList = appointments.filter((item) => item.id !== id);
-    setAppointments(filteredList)
+    setAppointments(filteredList);
+    localStorage.setItem("list",JSON.stringify(filteredList));
   };
 
+  const handleDoubleClick = (id) => {
+    const uptadeList = appointments.map((app) =>
+      app.id === id ? { ...app, consulted: !app.consulted } : app
+    );
+    setAppointments(uptadeList);
+    localStorage.setItem("list",JSON.stringify(uptadeList));
+  };
   return (
     <main className="text-center mt-2">
       <h1 className="display-5 text-danger">CLARUS HOSPITAL</h1>
       <Doctors handleAdd={handleAdd} />
-      <AppointmentList appointments={appointments} handleDelete={handleDelete} />
+      <AppointmentList
+        appointments={appointments}
+        handleDelete={handleDelete}
+        handleDoubleClick={handleDoubleClick}
+      />
     </main>
   );
 };
